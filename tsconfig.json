@@ -1,7 +1,6 @@
 {
   "compileOnSave": false,
   "angularCompilerOptions": {
-    "enableIvy": true,
     "compilationMode": "partial",
   },
   "compilerOptions": {
@@ -15,7 +14,7 @@
     "moduleResolution": "node",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "target": "es2020",
+    "target": "ES2022",
     "typeRoots": [
       "node_modules/@types"
     ],
@@ -30,6 +29,7 @@
       "ngx-dropzone/*": [
         "dist/ngx-dropzone/*"
       ]
-    }
+    },
+    "useDefineForClassFields": false
   }
 }
