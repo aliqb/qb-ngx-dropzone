@@ -46,7 +46,6 @@ Default
       <h2>My custom dropzone I</h2>
     </div>
   </ngx-dropzone-label>
-  <p>P-Element</p>
   @for (f of files; track f) {
     <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" [file]="f" [removable]="true"
       (removed)="onRemove(f)">

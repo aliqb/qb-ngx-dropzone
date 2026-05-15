@@ -1,15 +1,14 @@
 import {
   Component,
   Input,
-  ViewChild,
-  ContentChildren,
-  QueryList,
   HostBinding,
   HostListener,
   ElementRef,
   inject,
   input,
-  output
+  output,
+  contentChildren,
+  viewChild
 } from "@angular/core";
 import { NgxDropzoneService, RejectedFile } from "../ngx-dropzone.service";
 import { coerceBooleanProperty, coerceNumberProperty } from "../helpers";
@@ -37,15 +36,14 @@ export class NgxDropzoneComponent {
   private service = inject(NgxDropzoneService, { self: true });
 
   /** A list of the content-projected preview children. */
-  @ContentChildren(NgxDropzonePreviewComponent, { descendants: true })
-  _previewChildren: QueryList<NgxDropzonePreviewComponent>;
+  readonly _previewChildren = contentChildren(NgxDropzonePreviewComponent, { descendants: true });
 
   get _hasPreviews(): boolean {
-    return !!this._previewChildren.length;
+    return !!this._previewChildren().length;
   }
 
   /** A template reference to the native file input element. */
-  @ViewChild("fileInput", { static: true }) _fileInput: ElementRef;
+  readonly _fileInput = viewChild<ElementRef>("fileInput");
 
   /** Emitted when any files were added or rejected. */
   readonly change = output<NgxDropzoneChangeEvent>();
@@ -223,7 +221,7 @@ export class NgxDropzoneComponent {
 
   showFileSelector() {
     if (!this.disabledInput()) {
-      (this._fileInput.nativeElement as HTMLInputElement).click();
+      (this._fileInput().nativeElement as HTMLInputElement).click();
     }
   }
 
@@ -232,7 +230,7 @@ export class NgxDropzoneComponent {
     this.handleFileDrop(files);
 
     // Reset the native file input element to allow selecting the same file again
-    this._fileInput.nativeElement.value = "";
+    this._fileInput().nativeElement.value = "";
 
     // fix(#32): Prevent the default event behaviour which caused the change event to emit twice.
     this.preventDefault(event);
