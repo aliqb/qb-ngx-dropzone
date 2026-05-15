@@ -1,7 +1,5 @@
 import {
   Component,
-  EventEmitter,
-  Output,
   Input,
   ViewChild,
   ContentChildren,
@@ -11,6 +9,7 @@ import {
   ElementRef,
   inject,
   input,
+  output
 } from "@angular/core";
 import { NgxDropzoneService, RejectedFile } from "../ngx-dropzone.service";
 import { coerceBooleanProperty, coerceNumberProperty } from "../helpers";
@@ -49,7 +48,7 @@ export class NgxDropzoneComponent {
   @ViewChild("fileInput", { static: true }) _fileInput: ElementRef;
 
   /** Emitted when any files were added or rejected. */
-  @Output() readonly change = new EventEmitter<NgxDropzoneChangeEvent>();
+  readonly change = output<NgxDropzoneChangeEvent>();
 
   /** Set the accepted file types. Defaults to '*'. */
   readonly accept = input("*");
@@ -247,7 +246,7 @@ export class NgxDropzoneComponent {
       this.multiple(),
     );
 
-    this.change.next({
+    this.change.emit({
       addedFiles: result.addedFiles,
       rejectedFiles: result.rejectedFiles,
       source: this,

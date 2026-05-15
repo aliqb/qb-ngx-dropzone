@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, HostBinding, HostListener, inject, input } from '@angular/core';
+import { Component, Input, HostBinding, HostListener, inject, input, output } from '@angular/core';
 import { coerceBooleanProperty } from '../helpers';
 import { SafeStyle, DomSanitizer } from '@angular/platform-browser';
 
@@ -33,7 +33,7 @@ export class NgxDropzonePreviewComponent {
 
 
 	/** Emitted when the element should be removed. */
-	@Output() readonly removed = new EventEmitter<File>();
+	readonly removed = output<File>();
 
 	@HostListener('keyup', ['$event'])
 	keyEvent(event: KeyboardEvent) {
@@ -79,7 +79,7 @@ export class NgxDropzonePreviewComponent {
 	/** Remove the preview item (use from component code). */
 	remove() {
 		if (this.removable()) {
-			this.removed.next(this.file());
+			this.removed.emit(this.file());
 		}
 	}
 
