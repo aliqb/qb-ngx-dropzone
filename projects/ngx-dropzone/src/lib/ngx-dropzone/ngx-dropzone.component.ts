@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output, Input, ViewChild, ContentChildren, QueryList, HostBinding, HostListener, Self, ElementRef } from '@angular/core';
+import { Component, EventEmitter, Output, Input, ViewChild, ContentChildren, QueryList, HostBinding, HostListener, ElementRef, inject } from '@angular/core';
 import {NgxDropzoneService, RejectedFile} from '../ngx-dropzone.service';
 import { coerceBooleanProperty, coerceNumberProperty } from '../helpers';
 import { NgxDropzonePreviewComponent } from '../ngx-dropzone-preview/ngx-dropzone-preview.component';
@@ -17,10 +17,8 @@ export interface NgxDropzoneChangeEvent {
     standalone: false
 })
 export class NgxDropzoneComponent {
+  private service = inject(NgxDropzoneService, { self: true });
 
-  constructor(
-    @Self() private service: NgxDropzoneService
-  ) {}
 
   /** A list of the content-projected preview children. */
   @ContentChildren(NgxDropzonePreviewComponent, { descendants: true })

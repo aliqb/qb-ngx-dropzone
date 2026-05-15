@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, inject } from '@angular/core';
 import { NgxDropzonePreviewComponent } from '../ngx-dropzone-preview.component';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 
@@ -27,11 +27,7 @@ import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 })
 export class NgxDropzoneVideoPreviewComponent extends NgxDropzonePreviewComponent implements OnInit, OnDestroy {
 
-  constructor(
-    sanitizer: DomSanitizer
-  ) {
-    super(sanitizer);
-  }
+
 
   /** The video data source. */
   sanitizedVideoSrc: SafeUrl;

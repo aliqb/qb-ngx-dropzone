@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, HostBinding, HostListener } from '@angular/core';
+import { Component, Input, Output, EventEmitter, HostBinding, HostListener, inject } from '@angular/core';
 import { coerceBooleanProperty } from '../helpers';
 import { SafeStyle, DomSanitizer } from '@angular/platform-browser';
 
@@ -20,10 +20,8 @@ enum KEY_CODE {
     standalone: false
 })
 export class NgxDropzonePreviewComponent {
+	protected sanitizer = inject(DomSanitizer);
 
-	constructor(
-		protected sanitizer: DomSanitizer
-	) { }
 
 	protected _file: File;
 

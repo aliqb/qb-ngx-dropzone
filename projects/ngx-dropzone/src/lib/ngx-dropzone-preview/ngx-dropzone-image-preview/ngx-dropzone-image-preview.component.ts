@@ -1,4 +1,4 @@
-import { Component, OnInit, HostBinding, Input } from '@angular/core';
+import { Component, OnInit, HostBinding, Input, inject } from '@angular/core';
 import { NgxDropzonePreviewComponent } from '../ngx-dropzone-preview.component';
 import { DomSanitizer, SafeStyle } from '@angular/platform-browser';
 
@@ -23,11 +23,7 @@ import { DomSanitizer, SafeStyle } from '@angular/platform-browser';
 })
 export class NgxDropzoneImagePreviewComponent extends NgxDropzonePreviewComponent implements OnInit {
 
-  constructor(
-    sanitizer: DomSanitizer
-  ) {
-    super(sanitizer);
-  }
+
 
   /** The file to preview. */
   @Input()
