@@ -1,4 +1,4 @@
-import { Component, Input, HostBinding, HostListener, inject, input, output } from '@angular/core';
+import { Component, inject, input, output } from '@angular/core';
 import { coerceBooleanProperty } from '../helpers';
 import { SafeStyle, DomSanitizer } from '@angular/platform-browser';
 
@@ -17,7 +17,12 @@ enum KEY_CODE {
 		}
 		`,
     styleUrls: ['./ngx-dropzone-preview.component.scss'],
-    standalone: false
+    standalone: false,
+    host:{
+      '[style]': 'hostStyle',
+      '[tabindex]': '0',
+      '(keyup)': 'keyEvent($event)'
+    }
 })
 export class NgxDropzonePreviewComponent {
 	protected sanitizer = inject(DomSanitizer);
@@ -35,7 +40,7 @@ export class NgxDropzonePreviewComponent {
 	/** Emitted when the element should be removed. */
 	readonly removed = output<File>();
 
-	@HostListener('keyup', ['$event'])
+
 	keyEvent(event: KeyboardEvent) {
 		switch (event.keyCode) {
 			case KEY_CODE.BACKSPACE:
@@ -47,8 +52,7 @@ export class NgxDropzonePreviewComponent {
 		}
 	}
 
-	/** We use the HostBinding to pass these common styles to child components. */
-	@HostBinding('style')
+
 	get hostStyle(): SafeStyle {
 		const styles = `
 			display: flex;
@@ -67,8 +71,6 @@ export class NgxDropzonePreviewComponent {
 		return this.sanitizer.bypassSecurityTrustStyle(styles);
 	}
 
-	/** Make the preview item focusable using the tab key. */
-	@HostBinding('tabindex') tabIndex = 0;
 
 	/** Remove method to be used from the template. */
 	_remove(event) {

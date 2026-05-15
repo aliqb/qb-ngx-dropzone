@@ -1,6 +1,6 @@
-import { Component, OnInit, HostBinding, Input, inject, effect } from '@angular/core';
+import { Component, OnInit, effect } from '@angular/core';
 import { NgxDropzonePreviewComponent } from '../ngx-dropzone-preview.component';
-import { DomSanitizer, SafeStyle, SafeUrl } from '@angular/platform-browser';
+import {  SafeUrl } from '@angular/platform-browser';
 
 @Component({
     selector: 'ngx-dropzone-image-preview',

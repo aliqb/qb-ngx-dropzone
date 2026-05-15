@@ -1,14 +1,11 @@
 import {
   Component,
-  Input,
-  HostBinding,
-  HostListener,
   ElementRef,
   inject,
   input,
   output,
   contentChildren,
-  viewChild
+  viewChild,
 } from "@angular/core";
 import { NgxDropzoneService, RejectedFile } from "../ngx-dropzone.service";
 import { coerceBooleanProperty, coerceNumberProperty } from "../helpers";
@@ -30,13 +27,20 @@ export interface NgxDropzoneChangeEvent {
     "[class.ngx-dz-disabled]": "disabledInput()",
     "[class.expandable]": "expandable()",
     "[class.unclickable]": "disableClick()",
+    "[class.ngx-dz-hovered]": "_isHovered && !disabledInput()",
+    "(click)": "_onClick()",
+    "(dragover)": "_onDragOver($event)",
+    "(dragleave)": "_onDragLeave()",
+    "(drop)": "_onDrop($event)",
   },
 })
 export class NgxDropzoneComponent {
   private service = inject(NgxDropzoneService, { self: true });
 
   /** A list of the content-projected preview children. */
-  readonly _previewChildren = contentChildren(NgxDropzonePreviewComponent, { descendants: true });
+  readonly _previewChildren = contentChildren(NgxDropzonePreviewComponent, {
+    descendants: true,
+  });
 
   get _hasPreviews(): boolean {
     return !!this._previewChildren().length;
@@ -84,18 +88,14 @@ export class NgxDropzoneComponent {
     alias: "aria-describedby",
   });
 
-  @HostBinding("class.ngx-dz-hovered")
   _isHovered = false;
 
-  /** Show the native OS file explorer to select files. */
-  @HostListener("click")
   _onClick() {
     if (!this.disableClick()) {
       this.showFileSelector();
     }
   }
 
-  @HostListener("dragover", ["$event"])
   _onDragOver(event) {
     if (this.disabledInput()) {
       return;
@@ -105,12 +105,10 @@ export class NgxDropzoneComponent {
     this._isHovered = true;
   }
 
-  @HostListener("dragleave")
   _onDragLeave() {
     this._isHovered = false;
   }
 
-  @HostListener("drop", ["$event"])
   _onDrop(event) {
     if (this.disabledInput()) {
       return;

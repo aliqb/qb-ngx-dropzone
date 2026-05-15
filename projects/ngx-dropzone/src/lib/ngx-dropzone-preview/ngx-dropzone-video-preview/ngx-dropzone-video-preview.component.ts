@@ -1,6 +1,5 @@
-import { Component, OnInit, OnDestroy, inject, computed } from "@angular/core";
+import { Component, OnDestroy, computed } from "@angular/core";
 import { NgxDropzonePreviewComponent } from "../ngx-dropzone-preview.component";
-import { DomSanitizer, SafeUrl } from "@angular/platform-browser";
 
 @Component({
   selector: "ngx-dropzone-video-preview",
