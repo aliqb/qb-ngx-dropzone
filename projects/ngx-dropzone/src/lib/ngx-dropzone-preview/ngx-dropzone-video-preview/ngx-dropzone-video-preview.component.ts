@@ -1,13 +1,13 @@
-import { Component, OnInit, OnDestroy, inject } from '@angular/core';
-import { NgxDropzonePreviewComponent } from '../ngx-dropzone-preview.component';
-import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import { Component, OnInit, OnDestroy, inject, computed } from "@angular/core";
+import { NgxDropzonePreviewComponent } from "../ngx-dropzone-preview.component";
+import { DomSanitizer, SafeUrl } from "@angular/platform-browser";
 
 @Component({
-    selector: 'ngx-dropzone-video-preview',
-    template: `
-    @if (sanitizedVideoSrc) {
+  selector: "ngx-dropzone-video-preview",
+  template: `
+    @if (videoSrc()) {
       <video controls (click)="$event.stopPropagation()">
-        <source [src]="sanitizedVideoSrc" />
+        <source [src]="videoSrc()" />
       </video>
     }
     <ng-content select="ngx-dropzone-label"></ng-content>
@@ -15,41 +15,32 @@ import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
       <ngx-dropzone-remove-badge (click)="_remove($event)">
       </ngx-dropzone-remove-badge>
     }
-    `,
-    styleUrls: ['./ngx-dropzone-video-preview.component.scss'],
-    providers: [
-        {
-            provide: NgxDropzonePreviewComponent,
-            useExisting: NgxDropzoneVideoPreviewComponent
-        }
-    ],
-    standalone: false
+  `,
+  styleUrls: ["./ngx-dropzone-video-preview.component.scss"],
+  providers: [
+    {
+      provide: NgxDropzonePreviewComponent,
+      useExisting: NgxDropzoneVideoPreviewComponent,
+    },
+  ],
+  standalone: false,
 })
-export class NgxDropzoneVideoPreviewComponent extends NgxDropzonePreviewComponent implements OnInit, OnDestroy {
-
-
-
-  /** The video data source. */
-  sanitizedVideoSrc: SafeUrl;
-
-  private videoSrc: string;
-
-  ngOnInit() {
-    if (!this.file()) {
-      console.error('No file to read. Please provide a file using the [file] Input property.');
-      return;
+export class NgxDropzoneVideoPreviewComponent
+  extends NgxDropzonePreviewComponent
+  implements  OnDestroy
+{
+  videoSrc = computed<string>(() => {
+    if (this.file()) {
+      return URL.createObjectURL(this.file());
     }
+    console.error(
+      "No file to read. Please provide a file using the [file] Input property.",
+    );
 
-    /**
-     * We sanitize the URL here to enable the preview.
-     * Please note that this could cause security issues!
-     **/
-    this.videoSrc = URL.createObjectURL(this.file());
-    this.sanitizedVideoSrc = this.sanitizer.bypassSecurityTrustUrl(this.videoSrc);
-    console.log(this.sanitizedVideoSrc)
-  }
+    return "";
+  });
 
   ngOnDestroy() {
-    URL.revokeObjectURL(this.videoSrc);
+    URL.revokeObjectURL(this.videoSrc());
   }
 }
