@@ -11,7 +11,7 @@ import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
       </video>
     }
     <ng-content select="ngx-dropzone-label"></ng-content>
-    @if (removable) {
+    @if (removable()) {
       <ngx-dropzone-remove-badge (click)="_remove($event)">
       </ngx-dropzone-remove-badge>
     }
@@ -35,7 +35,7 @@ export class NgxDropzoneVideoPreviewComponent extends NgxDropzonePreviewComponen
   private videoSrc: string;
 
   ngOnInit() {
-    if (!this.file) {
+    if (!this.file()) {
       console.error('No file to read. Please provide a file using the [file] Input property.');
       return;
     }
@@ -44,8 +44,9 @@ export class NgxDropzoneVideoPreviewComponent extends NgxDropzonePreviewComponen
      * We sanitize the URL here to enable the preview.
      * Please note that this could cause security issues!
      **/
-    this.videoSrc = URL.createObjectURL(this.file);
+    this.videoSrc = URL.createObjectURL(this.file());
     this.sanitizedVideoSrc = this.sanitizer.bypassSecurityTrustUrl(this.videoSrc);
+    console.log(this.sanitizedVideoSrc)
   }
 
   ngOnDestroy() {

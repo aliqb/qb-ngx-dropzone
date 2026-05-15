@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, HostBinding, HostListener, inject } from '@angular/core';
+import { Component, Input, Output, EventEmitter, HostBinding, HostListener, inject, input } from '@angular/core';
 import { coerceBooleanProperty } from '../helpers';
 import { SafeStyle, DomSanitizer } from '@angular/platform-browser';
 
@@ -11,7 +11,7 @@ enum KEY_CODE {
     selector: 'ngx-dropzone-preview',
     template: `
 		<ng-content select="ngx-dropzone-label"></ng-content>
-		@if (removable) {
+		@if (removable()) {
 		  <ngx-dropzone-remove-badge (click)="_remove($event)">
 		  </ngx-dropzone-remove-badge>
 		}
@@ -26,19 +26,11 @@ export class NgxDropzonePreviewComponent {
 	protected _file: File;
 
 	/** The file to preview. */
-	@Input()
-	set file(value: File) { this._file = value; }
-	get file(): File { return this._file; }
+  file = input<File>()
 
 	/** Allow the user to remove files. */
-	@Input()
-	get removable(): boolean {
-		return this._removable;
-	}
-	set removable(value: boolean) {
-		this._removable = coerceBooleanProperty(value);
-	}
-	protected _removable = false;
+  removable = input<boolean>(false, {transform:coerceBooleanProperty});
+
 
 	/** Emitted when the element should be removed. */
 	@Output() readonly removed = new EventEmitter<File>();
@@ -86,8 +78,8 @@ export class NgxDropzonePreviewComponent {
 
 	/** Remove the preview item (use from component code). */
 	remove() {
-		if (this._removable) {
-			this.removed.next(this.file);
+		if (this.removable()) {
+			this.removed.next(this.file());
 		}
 	}
 
@@ -100,15 +92,15 @@ export class NgxDropzonePreviewComponent {
 			};
 
 			reader.onerror = e => {
-				console.error(`FileReader failed on file ${this.file.name}.`);
+				console.error(`FileReader failed on file ${this.file().name}.`);
 				reject(e);
 			};
 
-			if (!this.file) {
+			if (!this.file()) {
 				return reject('No file to read. Please provide a file using the [file] Input property.');
 			}
 
-			reader.readAsDataURL(this.file);
+			reader.readAsDataURL(this.file());
 		});
 	}
 }

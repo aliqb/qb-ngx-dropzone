@@ -1,7 +1,7 @@
 Default
 <ngx-dropzone></ngx-dropzone>
 
-<ngx-dropzone #drop [id]="'idtest'" [aria-label]="'al-test'" [aria-labelledby]="'alb-test'"
+<ngx-dropzone #drop [id]="'idtest'" [expandable]="true" [multiple]="true"  [aria-label]="'al-test'" [aria-labelledby]="'alb-test'"
   (change)="onFilesAdded($event)">
   <ngx-dropzone-label>Drop it, baby!</ngx-dropzone-label>
   @for (f of files; track f) {
