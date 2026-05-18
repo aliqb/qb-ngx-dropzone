@@ -1,12 +1,12 @@
-import { Component, OnDestroy, computed } from "@angular/core";
+import { Component, OnDestroy, OnInit, computed } from "@angular/core";
 import { NgxDropzonePreviewComponent } from "../ngx-dropzone-preview.component";
 
 @Component({
   selector: "ngx-dropzone-video-preview",
   template: `
-    @if (videoSrc()) {
+    @if (src()) {
       <video controls (click)="$event.stopPropagation()">
-        <source [src]="videoSrc()" />
+        <source [src]="src()" />
       </video>
     }
     <ng-content select="ngx-dropzone-label"></ng-content>
@@ -26,20 +26,17 @@ import { NgxDropzonePreviewComponent } from "../ngx-dropzone-preview.component";
 })
 export class NgxDropzoneVideoPreviewComponent
   extends NgxDropzonePreviewComponent
-  implements  OnDestroy
+  implements OnInit,  OnDestroy
 {
-  videoSrc = computed<string>(() => {
-    if (this.file()) {
-      return URL.createObjectURL(this.file());
-    }
-    console.error(
-      "No file to read. Please provide a file using the [file] Input property.",
-    );
-
-    return "";
-  });
+  ngOnInit(): void {
+      if(this.file()){
+        this.src.set(URL.createObjectURL(this.file()))
+      }
+  }
 
   ngOnDestroy() {
-    URL.revokeObjectURL(this.videoSrc());
+    if(this.src()) {
+      URL.revokeObjectURL(this.src() as string);
+    }
   }
 }

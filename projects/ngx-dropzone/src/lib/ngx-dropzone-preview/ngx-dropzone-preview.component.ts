@@ -1,10 +1,15 @@
-import { Component, inject, input, output } from '@angular/core';
+import { Component, inject, input, model, output } from '@angular/core';
 import { coerceBooleanProperty } from '../helpers';
-import { SafeStyle, DomSanitizer } from '@angular/platform-browser';
+import { SafeStyle, DomSanitizer, SafeUrl } from '@angular/platform-browser';
 
 enum KEY_CODE {
 	BACKSPACE = 8,
 	DELETE = 46
+}
+
+export interface NgxDropzoneRemoveEvent{
+  file:File|null;
+  src: string|SafeUrl|null;
 }
 
 @Component({
@@ -28,17 +33,19 @@ export class NgxDropzonePreviewComponent {
 	protected sanitizer = inject(DomSanitizer);
 
 
-	protected _file: File;
 
 	/** The file to preview. */
-  file = input<File>()
+  file = input<File>();
+
+  /** file src **/
+  src = model<string|SafeUrl|null>(null);
 
 	/** Allow the user to remove files. */
   removable = input<boolean>(false, {transform:coerceBooleanProperty});
 
 
 	/** Emitted when the element should be removed. */
-	readonly removed = output<File>();
+	readonly removed = output<NgxDropzoneRemoveEvent>();
 
 
 	keyEvent(event: KeyboardEvent) {
@@ -81,7 +88,7 @@ export class NgxDropzonePreviewComponent {
 	/** Remove the preview item (use from component code). */
 	remove() {
 		if (this.removable()) {
-			this.removed.emit(this.file());
+			this.removed.emit({file:this.file(), src: this.src()});
 		}
 	}
 
