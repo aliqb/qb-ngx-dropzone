@@ -1,11 +1,11 @@
 import { Component } from "@angular/core";
-import { NgxDropzoneRemoveEvent } from "projects/ngx-dropzone/src/public_api";
+import { NgxDropzoneModule, NgxDropzoneRemoveEvent } from "projects/ngx-dropzone/src/public_api";
 
 @Component({
-  selector: "app-root",
-  templateUrl: "./app.component.html",
-  styleUrls: ["./app.component.scss"],
-  standalone: false,
+    selector: "app-root",
+    templateUrl: "./app.component.html",
+    styleUrls: ["./app.component.scss"],
+    imports:[NgxDropzoneModule]
 })
 export class AppComponent {
   files: File[] = [];
