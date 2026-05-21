@@ -1,11 +1,11 @@
 import { Component } from "@angular/core";
-import { NgxDropzoneModule, NgxDropzoneRemoveEvent } from "projects/ngx-dropzone/src/public_api";
+import { QbNgxDropzoneModule, QbNgxDropzoneRemoveEvent } from "projects/ngx-dropzone/src/public_api";
 
 @Component({
     selector: "app-root",
     templateUrl: "./app.component.html",
     styleUrls: ["./app.component.scss"],
-    imports:[NgxDropzoneModule]
+    imports:[QbNgxDropzoneModule]
 })
 export class AppComponent {
   files: File[] = [];
@@ -20,17 +20,17 @@ export class AppComponent {
     console.log(event);
   }
 
-  onRemove(event: NgxDropzoneRemoveEvent) {
+  onRemove(event: QbNgxDropzoneRemoveEvent) {
     console.log(event);
     this.files.splice(this.files.indexOf(event.file), 1);
   }
 
-  onRemovePredefinedImage(event: NgxDropzoneRemoveEvent) {
+  onRemovePredefinedImage(event: QbNgxDropzoneRemoveEvent) {
     console.log(event);
     this.imageSrc ='';
   }
 
-  onRemovePredefinedVideo(event: NgxDropzoneRemoveEvent) {
+  onRemovePredefinedVideo(event: QbNgxDropzoneRemoveEvent) {
     console.log(event);
     this.videoSrc ='';
   }

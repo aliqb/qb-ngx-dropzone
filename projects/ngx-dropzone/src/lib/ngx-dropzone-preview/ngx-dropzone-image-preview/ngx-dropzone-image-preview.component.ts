@@ -1,29 +1,29 @@
 import { ChangeDetectionStrategy, Component, OnInit, effect, model } from "@angular/core";
-import { NgxDropzonePreviewComponent } from "../ngx-dropzone-preview.component";
-import { NgxDropzoneRemoveBadgeComponent } from "../ngx-dropzone-remove-badge/ngx-dropzone-remove-badge.component";
+import { QbNgxDropzonePreviewComponent } from "../ngx-dropzone-preview.component";
+import { QbNgxDropzoneRemoveBadgeComponent } from "../ngx-dropzone-remove-badge/ngx-dropzone-remove-badge.component";
 
 @Component({
-  selector: "ngx-dropzone-image-preview",
-  imports: [NgxDropzoneRemoveBadgeComponent],
+  selector: "qb-ngx-dropzone-image-preview",
+  imports: [QbNgxDropzoneRemoveBadgeComponent],
   template: `
     <img [src]="src()" />
-    <ng-content select="ngx-dropzone-label"></ng-content>
+    <ng-content select="qb-ngx-dropzone-label"></ng-content>
     @if (removable()) {
-      <ngx-dropzone-remove-badge (click)="_remove($event)">
-      </ngx-dropzone-remove-badge>
+      <qb-ngx-dropzone-remove-badge (click)="_remove($event)">
+      </qb-ngx-dropzone-remove-badge>
     }
   `,
   styleUrls: ["./ngx-dropzone-image-preview.component.scss"],
   providers: [
     {
-      provide: NgxDropzonePreviewComponent,
-      useExisting: NgxDropzoneImagePreviewComponent,
+      provide: QbNgxDropzonePreviewComponent,
+      useExisting: QbNgxDropzoneImagePreviewComponent,
     },
   ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class NgxDropzoneImagePreviewComponent
-  extends NgxDropzonePreviewComponent
+export class QbNgxDropzoneImagePreviewComponent
+  extends QbNgxDropzonePreviewComponent
   implements OnInit
 {
   constructor() {

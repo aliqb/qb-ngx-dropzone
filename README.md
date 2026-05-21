@@ -45,9 +45,9 @@ export class AppModule { }
 ```html
 <!-- in app.component.html -->
 <ngx-dropzone (change)="onSelect($event)">
-	<ngx-dropzone-label>Drop it, baby!</ngx-dropzone-label>
+	<qb-ngx-dropzone-label>Drop it, baby!</qb-ngx-dropzone-label>
 	<ngx-dropzone-preview *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)">
-		<ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+		<qb-ngx-dropzone-label>{{ f.name }} ({{ f.type }})</qb-ngx-dropzone-label>
 	</ngx-dropzone-preview>
 </ngx-dropzone>
 ```
@@ -71,13 +71,13 @@ You can also use special preview components to preview images or videos:
 
 ```html
 <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let f of files" [file]="f">
-  <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+  <qb-ngx-dropzone-label>{{ f.name }} ({{ f.type }})</qb-ngx-dropzone-label>
 </ngx-dropzone-image-preview>
 ```
 
 ```html
 <ngx-dropzone-video-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let f of files" [file]="f">
-  <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+  <qb-ngx-dropzone-label>{{ f.name }} ({{ f.type }})</qb-ngx-dropzone-label>
 </ngx-dropzone-video-preview>
 ```
 
@@ -115,7 +115,7 @@ If you'd like to show the native file selector programmatically then do it as fo
 <button (click)="drop.showFileSelector()">Open</button>
 ```
 
-#### ngx-dropzone-label
+#### qb-ngx-dropzone-label
 
 This component has no attributes or methods and acts as a container for the label text using content projection.
 You can place anything inside of it and the text will always be centered.
@@ -135,7 +135,7 @@ It has the following Output event:
 
 The `ngx-dropzone-image-preview` and `ngx-dropzone-video-preview` components inherit from this component but expand the preview functionality to display either images or videos directly in the component. See the [wiki](https://github.com/peterfreeman/ngx-dropzone/wiki/How-to-create-a-custom-preview-component%3F) on how to implement your own custom preview components.
 
-#### ngx-dropzone-remove-badge
+#### qb-ngx-dropzone-remove-badge
 
 This component is used within the previews to remove selected files. You can use it within your own preview component implementation if you like (see the wiki).
 

@@ -36,7 +36,7 @@ $dz-border: #717386;
 		cursor: default;
 	}
 
-	::ng-deep ngx-dropzone-label {
+	::ng-deep qb-ngx-dropzone-label {
 		text-align: center;
 		z-index: 10;
 		margin: 10px auto;
@@ -50,7 +50,7 @@ $dz-border: #717386;
 		position: absolute;
 		z-index: -1;
 
-		&:focus + ::ng-deep ngx-dropzone-label {
+		&:focus + ::ng-deep qb-ngx-dropzone-label {
 			/* Fallback for older browsers */
 			outline: 1px dotted #000;
 

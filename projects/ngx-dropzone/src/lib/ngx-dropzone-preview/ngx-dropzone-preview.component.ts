@@ -8,8 +8,8 @@ import {
 } from "@angular/core";
 import { coerceBooleanProperty } from "../helpers";
 import { SafeStyle, DomSanitizer, SafeUrl } from "@angular/platform-browser";
-import { NgxDropzoneRemoveBadgeComponent } from "./ngx-dropzone-remove-badge/ngx-dropzone-remove-badge.component";
-import { NgxDropzoneRemoveEvent } from "../ngx-dropzone.models";
+import { QbNgxDropzoneRemoveEvent } from "../ngx-dropzone.models";
+import { QbNgxDropzoneRemoveBadgeComponent } from "./ngx-dropzone-remove-badge/ngx-dropzone-remove-badge.component";
 
 enum KEY_CODE {
   BACKSPACE = 8,
@@ -18,13 +18,13 @@ enum KEY_CODE {
 
 
 @Component({
-  selector: "ngx-dropzone-preview",
-  imports: [NgxDropzoneRemoveBadgeComponent],
+  selector: "qb-ngx-dropzone-preview",
+  imports: [QbNgxDropzoneRemoveBadgeComponent],
   template: `
-    <ng-content select="ngx-dropzone-label"></ng-content>
+    <ng-content select="qb-ngx-dropzone-label"></ng-content>
     @if (removable()) {
-      <ngx-dropzone-remove-badge (click)="_remove($event)">
-      </ngx-dropzone-remove-badge>
+      <qb-ngx-dropzone-remove-badge (click)="_remove($event)">
+      </qb-ngx-dropzone-remove-badge>
     }
   `,
   styleUrls: ["./ngx-dropzone-preview.component.scss"],
@@ -35,7 +35,7 @@ enum KEY_CODE {
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class NgxDropzonePreviewComponent {
+export class QbNgxDropzonePreviewComponent {
   protected sanitizer = inject(DomSanitizer);
 
   /** The file to preview. */
@@ -48,7 +48,7 @@ export class NgxDropzonePreviewComponent {
   removable = input<boolean>(false, { transform: coerceBooleanProperty });
 
   /** Emitted when the element should be removed. */
-  readonly removed = output<NgxDropzoneRemoveEvent>();
+  readonly removed = output<QbNgxDropzoneRemoveEvent>();
 
   keyEvent(event: KeyboardEvent) {
     switch (event.keyCode) {

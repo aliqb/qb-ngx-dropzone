@@ -1,8 +1,8 @@
 {
-  "name": "ngx-dropzone",
+  "name": "qb-ngx-dropzone",
   "description": "A highly configurable dropzone component for Angular.",
   "version": "3.1.0",
-  "author": "Peter Freeman",
+  "author": "Peter Freeman, Ali QB",
   "keywords": [
     "angular",
     "angular 2",

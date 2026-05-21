@@ -1,6 +1,6 @@
 import { Directive } from '@angular/core';
 
 @Directive({
-    selector: 'ngx-dropzone-label',
+    selector: 'qb-ngx-dropzone-label',
 })
-export class NgxDropzoneLabelDirective { }
+export class QbNgxDropzoneLabelDirective { }

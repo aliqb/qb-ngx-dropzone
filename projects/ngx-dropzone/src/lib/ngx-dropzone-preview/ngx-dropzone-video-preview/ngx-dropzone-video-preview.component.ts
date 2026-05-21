@@ -5,35 +5,35 @@ import {
   OnInit,
   computed,
 } from "@angular/core";
-import { NgxDropzonePreviewComponent } from "../ngx-dropzone-preview.component";
-import { NgxDropzoneRemoveBadgeComponent } from "../ngx-dropzone-remove-badge/ngx-dropzone-remove-badge.component";
+import { QbNgxDropzonePreviewComponent } from "../ngx-dropzone-preview.component";
+import { QbNgxDropzoneRemoveBadgeComponent } from "../ngx-dropzone-remove-badge/ngx-dropzone-remove-badge.component";
 
 @Component({
-  selector: "ngx-dropzone-video-preview",
-  imports: [NgxDropzoneRemoveBadgeComponent],
+  selector: "qb-ngx-dropzone-video-preview",
+  imports: [QbNgxDropzoneRemoveBadgeComponent],
   template: `
     @if (src()) {
       <video controls (click)="$event.stopPropagation()">
         <source [src]="src()" />
       </video>
     }
-    <ng-content select="ngx-dropzone-label"></ng-content>
+    <ng-content select="qb-ngx-dropzone-label"></ng-content>
     @if (removable()) {
-      <ngx-dropzone-remove-badge (click)="_remove($event)">
-      </ngx-dropzone-remove-badge>
+      <qb-ngx-dropzone-remove-badge (click)="_remove($event)">
+      </qb-ngx-dropzone-remove-badge>
     }
   `,
   styleUrls: ["./ngx-dropzone-video-preview.component.scss"],
   providers: [
     {
-      provide: NgxDropzonePreviewComponent,
-      useExisting: NgxDropzoneVideoPreviewComponent,
+      provide: QbNgxDropzonePreviewComponent,
+      useExisting: QbNgxDropzoneVideoPreviewComponent,
     },
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class NgxDropzoneVideoPreviewComponent
-  extends NgxDropzonePreviewComponent
+export class QbNgxDropzoneVideoPreviewComponent
+  extends QbNgxDropzonePreviewComponent
   implements OnInit, OnDestroy
 {
   ngOnInit(): void {

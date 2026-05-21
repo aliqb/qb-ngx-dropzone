@@ -11,11 +11,11 @@ import {
 } from "@angular/core";
 import { NgxDropzoneService } from "../ngx-dropzone.service";
 import { coerceBooleanProperty, coerceNumberProperty } from "../helpers";
-import { NgxDropzonePreviewComponent } from "../ngx-dropzone-preview/ngx-dropzone-preview.component";
-import { NgxDropzoneChangeEvent } from "../ngx-dropzone.models";
+import { QbNgxDropzonePreviewComponent } from "../ngx-dropzone-preview/ngx-dropzone-preview.component";
+import { QbNgxDropzoneChangeEvent } from "../ngx-dropzone.models";
 
 @Component({
-  selector: "ngx-dropzone, [ngx-dropzone]",
+  selector: "qb-ngx-dropzone, [qb-ngx-dropzone]",
   templateUrl: "./ngx-dropzone.component.html",
   styleUrls: ["./ngx-dropzone.component.scss"],
   providers: [NgxDropzoneService],
@@ -31,11 +31,11 @@ import { NgxDropzoneChangeEvent } from "../ngx-dropzone.models";
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class NgxDropzoneComponent {
+export class QbNgxDropzoneComponent {
   private service = inject(NgxDropzoneService, { self: true });
 
   /** A list of the content-projected preview children. */
-  readonly _previewChildren = contentChildren(NgxDropzonePreviewComponent, {
+  readonly _previewChildren = contentChildren(QbNgxDropzonePreviewComponent, {
     descendants: true,
   });
 
@@ -47,7 +47,7 @@ export class NgxDropzoneComponent {
   readonly _fileInput = viewChild<ElementRef>("fileInput");
 
   /** Emitted when any files were added or rejected. */
-  readonly change = output<NgxDropzoneChangeEvent>();
+  readonly change = output<QbNgxDropzoneChangeEvent>();
 
   /** Set the accepted file types. Defaults to '*'. */
   readonly accept = input("*");

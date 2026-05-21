@@ -1,104 +1,104 @@
 Default
-<ngx-dropzone></ngx-dropzone>
+<qb-ngx-dropzone></qb-ngx-dropzone>
 
-<ngx-dropzone #drop [id]="'idtest'" [expandable]="true" [multiple]="true" [aria-label]="'al-test'"
+<qb-ngx-dropzone #drop [id]="'idtest'" [expandable]="true" [multiple]="true" [aria-label]="'al-test'"
   [aria-labelledby]="'alb-test'" (change)="onFilesAdded($event)">
-  <ngx-dropzone-label>Drop it, baby!</ngx-dropzone-label>
+  <qb-ngx-dropzone-label>Drop it, baby!</qb-ngx-dropzone-label>
   @for (f of files; track f) {
-  <ngx-dropzone-preview [removable]="true" (removed)="onRemove($event)">
-    <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
-  </ngx-dropzone-preview>
+  <qb-ngx-dropzone-preview [removable]="true" (removed)="onRemove($event)">
+    <qb-ngx-dropzone-label>{{ f.name }} ({{ f.type }})</qb-ngx-dropzone-label>
+  </qb-ngx-dropzone-preview>
   }
-</ngx-dropzone>
+</qb-ngx-dropzone>
 
 <button (click)="drop.showFileSelector()">Open</button>
 
-<ngx-dropzone (change)="onFilesAdded($event)" [processDirectoryDrop]="true">
-  <ngx-dropzone-label>Drop your directories in here, to see the magic happen!</ngx-dropzone-label>
+<qb-ngx-dropzone (change)="onFilesAdded($event)" [processDirectoryDrop]="true">
+  <qb-ngx-dropzone-label>Drop your directories in here, to see the magic happen!</qb-ngx-dropzone-label>
   @for (f of files; track f) {
-  <ngx-dropzone-preview [removable]="true" (removed)="onRemove($event)">
-    <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
-  </ngx-dropzone-preview>
+  <qb-ngx-dropzone-preview [removable]="true" (removed)="onRemove($event)">
+    <qb-ngx-dropzone-label>{{ f.name }} ({{ f.type }})</qb-ngx-dropzone-label>
+  </qb-ngx-dropzone-preview>
   }
-</ngx-dropzone>
+</qb-ngx-dropzone>
 
-<ngx-dropzone (change)="onFilesAdded($event)" [disabled]="true" [expandable]="true">
-  <ngx-dropzone-label>Drop it like it's hot!</ngx-dropzone-label>
+<qb-ngx-dropzone (change)="onFilesAdded($event)" [disabled]="true" [expandable]="true">
+  <qb-ngx-dropzone-label>Drop it like it's hot!</qb-ngx-dropzone-label>
   @for (f of files; track f) {
-  <ngx-dropzone-preview [removable]="true" (removed)="onRemove($event)">
-    <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
-  </ngx-dropzone-preview>
+  <qb-ngx-dropzone-preview [removable]="true" (removed)="onRemove($event)">
+    <qb-ngx-dropzone-label>{{ f.name }} ({{ f.type }})</qb-ngx-dropzone-label>
+  </qb-ngx-dropzone-preview>
   }
-</ngx-dropzone>
+</qb-ngx-dropzone>
 
-<ngx-dropzone (change)="onFilesAdded($event)" [multiple]="false" [disableClick]="true">
-  <ngx-dropzone-label>Drop it like it's hott!</ngx-dropzone-label>
+<qb-ngx-dropzone (change)="onFilesAdded($event)" [multiple]="false" [disableClick]="true">
+  <qb-ngx-dropzone-label>Drop it like it's hott!</qb-ngx-dropzone-label>
   @for (f of files; track f) {
-  <ngx-dropzone-preview [removable]="true" (removed)="onRemove($event)">
-    <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
-  </ngx-dropzone-preview>
+  <qb-ngx-dropzone-preview [removable]="true" (removed)="onRemove($event)">
+    <qb-ngx-dropzone-label>{{ f.name }} ({{ f.type }})</qb-ngx-dropzone-label>
+  </qb-ngx-dropzone-preview>
   }
-</ngx-dropzone>
+</qb-ngx-dropzone>
 
-<div class="custom-dropzone" ngx-dropzone [accept]="'image/*'" (change)="onFilesAdded($event)">
-  <ngx-dropzone-label>
+<div class="custom-dropzone" qb-ngx-dropzone [accept]="'image/*'" (change)="onFilesAdded($event)">
+  <qb-ngx-dropzone-label>
     <div>
       <h2>My custom dropzone I</h2>
     </div>
-  </ngx-dropzone-label>
+  </qb-ngx-dropzone-label>
   @if (imageSrc) {
-  <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" [src]="imageSrc" [removable]="true"
+  <qb-ngx-dropzone-image-preview ngProjectAs="qb-ngx-dropzone-preview" [src]="imageSrc" [removable]="true"
     (removed)="onRemovePredefinedImage($event)">
-    <ngx-dropzone-label>Predefined image</ngx-dropzone-label>
-  </ngx-dropzone-image-preview>
+    <qb-ngx-dropzone-label>Predefined image</qb-ngx-dropzone-label>
+  </qb-ngx-dropzone-image-preview>
   }
   @for (f of files; track f) {
-  <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" [file]="f" [removable]="true"
+  <qb-ngx-dropzone-image-preview ngProjectAs="qb-ngx-dropzone-preview" [file]="f" [removable]="true"
     (removed)="onRemove($event)">
-    <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
-  </ngx-dropzone-image-preview>
+    <qb-ngx-dropzone-label>{{ f.name }} ({{ f.type }})</qb-ngx-dropzone-label>
+  </qb-ngx-dropzone-image-preview>
   }
 </div>
 
-<div class="custom-dropzone" ngx-dropzone [accept]="'video/*'" (change)="onFilesAdded($event)">
-  <ngx-dropzone-label>
+<div class="custom-dropzone" qb-ngx-dropzone [accept]="'video/*'" (change)="onFilesAdded($event)">
+  <qb-ngx-dropzone-label>
     <div>
       <h2>My custom dropzone II</h2>
     </div>
-  </ngx-dropzone-label>
+  </qb-ngx-dropzone-label>
   @if (videoSrc) {
-  <ngx-dropzone-video-preview ngProjectAs="ngx-dropzone-preview" [src]="videoSrc" [removable]="true"
+  <qb-ngx-dropzone-video-preview ngProjectAs="qb-ngx-dropzone-preview" [src]="videoSrc" [removable]="true"
     (removed)="onRemovePredefinedVideo($event)">
-    <ngx-dropzone-label>Predefined Video</ngx-dropzone-label>
-  </ngx-dropzone-video-preview>
+    <qb-ngx-dropzone-label>Predefined Video</qb-ngx-dropzone-label>
+  </qb-ngx-dropzone-video-preview>
   }
   @for (f of files; track f) {
-  <ngx-dropzone-video-preview ngProjectAs="ngx-dropzone-preview" [file]="f" [removable]="true"
+  <qb-ngx-dropzone-video-preview ngProjectAs="qb-ngx-dropzone-preview" [file]="f" [removable]="true"
     (removed)="onRemove($event)">
-    <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
-  </ngx-dropzone-video-preview>
+    <qb-ngx-dropzone-label>{{ f.name }} ({{ f.type }})</qb-ngx-dropzone-label>
+  </qb-ngx-dropzone-video-preview>
   }
 </div>
 
-<div class="custom-dropzone" ngx-dropzone (change)="onFilesAdded($event)">
-  <ngx-dropzone-label>
+<div class="custom-dropzone" qb-ngx-dropzone (change)="onFilesAdded($event)">
+  <qb-ngx-dropzone-label>
     <div>
       <h2>My custom dropzone III</h2>
     </div>
-  </ngx-dropzone-label>
+  </qb-ngx-dropzone-label>
   @for (f of files; track f) {
-  <ngx-dropzone-preview [file]="f" [removable]="true" (removed)="onRemove($event)">
-    <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
-  </ngx-dropzone-preview>
+  <qb-ngx-dropzone-preview [file]="f" [removable]="true" (removed)="onRemove($event)">
+    <qb-ngx-dropzone-label>{{ f.name }} ({{ f.type }})</qb-ngx-dropzone-label>
+  </qb-ngx-dropzone-preview>
   }
 </div>
 <h4>Icon Preview</h4>
-<ngx-dropzone class="custom-dropzone" #drop [id]="'idtest'" [aria-label]="'al-test'"
+<qb-ngx-dropzone class="custom-dropzone" #drop [id]="'idtest'" [aria-label]="'al-test'"
   [aria-labelledby]="'alb-test'" (change)="onFilesAdded($event)">
-  <ngx-dropzone-label>Drop it, baby!</ngx-dropzone-label>
+  <qb-ngx-dropzone-label>Drop it, baby!</qb-ngx-dropzone-label>
   @for (f of files; track f) {
-  <ngx-dropzone-file-icon-preview ngProjectAs="ngx-dropzone-preview"  [file]="f" [removable]="true" (removed)="onRemove($event)">
-    <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
-  </ngx-dropzone-file-icon-preview>
+  <qb-ngx-dropzone-file-icon-preview ngProjectAs="qb-ngx-dropzone-preview"  [file]="f" [removable]="true" (removed)="onRemove($event)">
+    <qb-ngx-dropzone-label>{{ f.name }} ({{ f.type }})</qb-ngx-dropzone-label>
+  </qb-ngx-dropzone-file-icon-preview>
   }
-</ngx-dropzone>
+</qb-ngx-dropzone>

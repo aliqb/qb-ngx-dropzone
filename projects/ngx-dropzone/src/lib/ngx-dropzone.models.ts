@@ -1,21 +1,20 @@
 import { SafeUrl } from "@angular/platform-browser";
 import { RejectedFile } from "./ngx-dropzone.service";
-import { NgxDropzoneComponent } from "./ngx-dropzone/ngx-dropzone.component";
-import { InjectionToken } from "@angular/core";
+import { QbNgxDropzoneComponent } from "./ngx-dropzone/ngx-dropzone.component";
 
 
-export interface NgxDropzoneChangeEvent {
-  source: NgxDropzoneComponent;
+export interface QbNgxDropzoneChangeEvent {
+  source: QbNgxDropzoneComponent;
   addedFiles: File[];
   rejectedFiles: RejectedFile[];
 }
 
-export interface NgxDropzoneRemoveEvent {
+export interface QbNgxDropzoneRemoveEvent {
   file: File | null;
   src: string | SafeUrl | null;
 }
 
-export interface NgxIconExtension{
+export interface QbNgxIconExtension{
   extensionType:string;
   src: string;
 }

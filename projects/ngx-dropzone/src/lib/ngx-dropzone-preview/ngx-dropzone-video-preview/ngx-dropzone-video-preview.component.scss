@@ -10,12 +10,12 @@
 			opacity: 0.7;
     }
 
-		ngx-dropzone-remove-badge {
+		qb-ngx-dropzone-remove-badge {
 			opacity: 1;
 		}
 	}
 
-	ngx-dropzone-remove-badge {
+	qb-ngx-dropzone-remove-badge {
 		opacity: 0;
 	}
 
@@ -24,7 +24,7 @@
 		border-radius: 5px;
   }
 
-  ::ng-deep ngx-dropzone-label {
+  ::ng-deep qb-ngx-dropzone-label {
 		position: absolute;
 		overflow-wrap: break-word;
 	}

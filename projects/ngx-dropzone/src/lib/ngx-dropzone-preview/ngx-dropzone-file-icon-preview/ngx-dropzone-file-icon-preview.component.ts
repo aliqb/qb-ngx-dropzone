@@ -3,45 +3,42 @@ import {
   Component,
   computed,
   inject,
-  input,
-  output,
+
 } from "@angular/core";
-import { NgxDropzoneImagePreviewComponent } from "../ngx-dropzone-image-preview/ngx-dropzone-image-preview.component";
-import { coerceBooleanProperty } from "../../helpers";
-import { NgxDropzonePreviewComponent } from "../ngx-dropzone-preview.component";
-import { NgxDropzoneRemoveBadgeComponent } from "../ngx-dropzone-remove-badge/ngx-dropzone-remove-badge.component";
+import { QbNgxDropzoneImagePreviewComponent } from "../ngx-dropzone-image-preview/ngx-dropzone-image-preview.component";
+import { QbNgxDropzonePreviewComponent } from "../ngx-dropzone-preview.component";
 import {
-  NgxDropzoneRemoveEvent,
-  NgxIconExtension,
+  QbNgxDropzoneRemoveEvent,
+  QbNgxIconExtension,
 } from "../../ngx-dropzone.models";
-import { defaultIcons, NgxIconImages } from "../../injectionTokens";
+import { defaultIcons, QbNgxIconImages } from "../../injectionTokens";
 
 @Component({
-  selector: "ngx-dropzone-file-icon-preview",
-  imports: [NgxDropzoneImagePreviewComponent],
+  selector: "qb-ngx-dropzone-file-icon-preview",
+  imports: [QbNgxDropzoneImagePreviewComponent],
   template: `
-    <ngx-dropzone-image-preview
+    <qb-ngx-dropzone-image-preview
       [src]="iconSrc()"
       [removable]="removable()"
       (removed)="removed.emit($event)"
     >
       <ng-content
-        select="ngx-dropzone-label"
-        ngProjectAs="ngx-dropzone-label"
+        select="qb-ngx-dropzone-label"
+        ngProjectAs="qb-ngx-dropzone-label"
       ></ng-content>
-    </ngx-dropzone-image-preview>
+    </qb-ngx-dropzone-image-preview>
   `,
   providers: [
     {
-      provide: NgxDropzonePreviewComponent,
-      useExisting: NgxDropzoneFileIconPreviewComponent,
+      provide: QbNgxDropzonePreviewComponent,
+      useExisting: QbNgxDropzoneFileIconPreviewComponent,
     },
   ],
   styleUrl: "ngx-dropzone-file-icon-preview.component.scss",
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class NgxDropzoneFileIconPreviewComponent extends NgxDropzonePreviewComponent {
-  private readonly iconImages = inject(NgxIconImages, { optional: true });
+export class QbNgxDropzoneFileIconPreviewComponent extends QbNgxDropzonePreviewComponent {
+  private readonly iconImages = inject(QbNgxIconImages, { optional: true });
 
   iconSrc = computed<string>(()=>{
     const file = this.file();
@@ -56,7 +53,7 @@ export class NgxDropzoneFileIconPreviewComponent extends NgxDropzonePreviewCompo
 
   private findIconSrc(
     extension,
-    icons: NgxIconExtension[],
+    icons: QbNgxIconExtension[],
   ): string | undefined {
     return icons.find((item) => item.extensionType.includes(extension))?.src;
   }

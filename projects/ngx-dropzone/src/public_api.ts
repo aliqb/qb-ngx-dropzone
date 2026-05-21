@@ -12,3 +12,4 @@ export * from './lib/ngx-dropzone-preview/ngx-dropzone-remove-badge/ngx-dropzone
 export * from './lib/ngx-dropzone-preview/ngx-dropzone-file-icon-preview/ngx-dropzone-file-icon-preview.component';
 
 export * from './lib/ngx-dropzone.models';
+export * from './lib/injectionTokens';
