@@ -19,7 +19,6 @@ import { SafeUrl } from "@angular/platform-browser";
       useExisting: NgxDropzoneImagePreviewComponent,
     },
   ],
-  standalone: false,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NgxDropzoneImagePreviewComponent

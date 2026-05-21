@@ -9,16 +9,15 @@ import { NgxDropzoneVideoPreviewComponent } from './ngx-dropzone-preview/ngx-dro
 
 @NgModule({
 	imports: [
-		CommonModule
-	],
-	declarations: [
+		CommonModule,
 		NgxDropzoneComponent,
-		NgxDropzoneLabelDirective,
-		NgxDropzonePreviewComponent,
-		NgxDropzoneImagePreviewComponent,
-		NgxDropzoneRemoveBadgeComponent,
-		NgxDropzoneVideoPreviewComponent,
+    NgxDropzoneLabelDirective,
+    NgxDropzonePreviewComponent,
+    NgxDropzoneImagePreviewComponent,
+    NgxDropzoneRemoveBadgeComponent,
+    NgxDropzoneVideoPreviewComponent,
 	],
+
 	exports: [
 		NgxDropzoneComponent,
 		NgxDropzoneLabelDirective,

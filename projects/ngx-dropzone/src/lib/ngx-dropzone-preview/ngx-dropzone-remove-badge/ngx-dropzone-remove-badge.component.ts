@@ -9,7 +9,6 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
     </svg>
   `,
     styleUrls: ['./ngx-dropzone-remove-badge.component.scss'],
-    standalone: false,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NgxDropzoneRemoveBadgeComponent { }

@@ -22,7 +22,6 @@ export interface NgxDropzoneRemoveEvent{
 		}
 		`,
     styleUrls: ['./ngx-dropzone-preview.component.scss'],
-    standalone: false,
     host:{
       '[style]': 'hostStyle',
       '[tabindex]': '0',

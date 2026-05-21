@@ -22,7 +22,6 @@ import { NgxDropzonePreviewComponent } from "../ngx-dropzone-preview.component";
       useExisting: NgxDropzoneVideoPreviewComponent,
     },
   ],
-  standalone: false,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NgxDropzoneVideoPreviewComponent

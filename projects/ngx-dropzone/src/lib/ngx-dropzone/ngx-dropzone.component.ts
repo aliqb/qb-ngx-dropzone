@@ -24,7 +24,6 @@ export interface NgxDropzoneChangeEvent {
   templateUrl: "./ngx-dropzone.component.html",
   styleUrls: ["./ngx-dropzone.component.scss"],
   providers: [NgxDropzoneService],
-  standalone: false,
   host: {
     "[class.ngx-dz-disabled]": "disabledInput()",
     "[class.expandable]": "expandable()",
