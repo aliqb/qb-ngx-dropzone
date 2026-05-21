@@ -6,6 +6,8 @@ import {
   output,
   contentChildren,
   viewChild,
+  ChangeDetectionStrategy,
+  signal,
 } from "@angular/core";
 import { NgxDropzoneService, RejectedFile } from "../ngx-dropzone.service";
 import { coerceBooleanProperty, coerceNumberProperty } from "../helpers";
@@ -27,12 +29,13 @@ export interface NgxDropzoneChangeEvent {
     "[class.ngx-dz-disabled]": "disabledInput()",
     "[class.expandable]": "expandable()",
     "[class.unclickable]": "disableClick()",
-    "[class.ngx-dz-hovered]": "_isHovered && !disabledInput()",
+    "[class.ngx-dz-hovered]": "isHovered() && !disabledInput()",
     "(click)": "_onClick()",
     "(dragover)": "_onDragOver($event)",
     "(dragleave)": "_onDragLeave()",
     "(drop)": "_onDrop($event)",
   },
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NgxDropzoneComponent {
   private service = inject(NgxDropzoneService, { self: true });
@@ -88,7 +91,7 @@ export class NgxDropzoneComponent {
     alias: "aria-describedby",
   });
 
-  _isHovered = false;
+  isHovered = signal<boolean>(false);
 
   _onClick() {
     if (!this.disableClick()) {
@@ -102,11 +105,11 @@ export class NgxDropzoneComponent {
     }
 
     this.preventDefault(event);
-    this._isHovered = true;
+    this.isHovered.set(true);
   }
 
   _onDragLeave() {
-    this._isHovered = false;
+    this.isHovered.set(false);
   }
 
   _onDrop(event) {
@@ -115,7 +118,7 @@ export class NgxDropzoneComponent {
     }
 
     this.preventDefault(event);
-    this._isHovered = false;
+    this.isHovered.set(false);
 
     // if processDirectoryDrop is not enabled or webkitGetAsEntry is not supported we handle the drop as usual
     if (

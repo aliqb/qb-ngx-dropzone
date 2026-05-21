@@ -1,4 +1,4 @@
-import { Component, inject, input, model, output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, input, model, output } from '@angular/core';
 import { coerceBooleanProperty } from '../helpers';
 import { SafeStyle, DomSanitizer, SafeUrl } from '@angular/platform-browser';
 
@@ -27,7 +27,8 @@ export interface NgxDropzoneRemoveEvent{
       '[style]': 'hostStyle',
       '[tabindex]': '0',
       '(keyup)': 'keyEvent($event)'
-    }
+    },
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NgxDropzonePreviewComponent {
 	protected sanitizer = inject(DomSanitizer);

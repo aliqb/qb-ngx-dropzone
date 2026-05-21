@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, computed } from "@angular/core";
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit, computed } from "@angular/core";
 import { NgxDropzonePreviewComponent } from "../ngx-dropzone-preview.component";
 
 @Component({
@@ -23,19 +23,20 @@ import { NgxDropzonePreviewComponent } from "../ngx-dropzone-preview.component";
     },
   ],
   standalone: false,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NgxDropzoneVideoPreviewComponent
   extends NgxDropzonePreviewComponent
-  implements OnInit,  OnDestroy
+  implements OnInit, OnDestroy
 {
   ngOnInit(): void {
-      if(this.file()){
-        this.src.set(URL.createObjectURL(this.file()))
-      }
+    if (this.file()) {
+      this.src.set(URL.createObjectURL(this.file()));
+    }
   }
 
   ngOnDestroy() {
-    if(this.src()) {
+    if (this.src()) {
       URL.revokeObjectURL(this.src() as string);
     }
   }

@@ -1,4 +1,4 @@
-import { Component, OnInit, effect, model } from "@angular/core";
+import { ChangeDetectionStrategy, Component, OnInit, effect, model } from "@angular/core";
 import { NgxDropzonePreviewComponent } from "../ngx-dropzone-preview.component";
 import { SafeUrl } from "@angular/platform-browser";
 
@@ -20,6 +20,7 @@ import { SafeUrl } from "@angular/platform-browser";
     },
   ],
   standalone: false,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NgxDropzoneImagePreviewComponent
   extends NgxDropzonePreviewComponent
