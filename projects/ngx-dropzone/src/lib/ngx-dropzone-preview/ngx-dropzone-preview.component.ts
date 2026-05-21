@@ -9,16 +9,13 @@ import {
 import { coerceBooleanProperty } from "../helpers";
 import { SafeStyle, DomSanitizer, SafeUrl } from "@angular/platform-browser";
 import { NgxDropzoneRemoveBadgeComponent } from "./ngx-dropzone-remove-badge/ngx-dropzone-remove-badge.component";
+import { NgxDropzoneRemoveEvent } from "../ngx-dropzone.models";
 
 enum KEY_CODE {
   BACKSPACE = 8,
   DELETE = 46,
 }
 
-export interface NgxDropzoneRemoveEvent {
-  file: File | null;
-  src: string | SafeUrl | null;
-}
 
 @Component({
   selector: "ngx-dropzone-preview",

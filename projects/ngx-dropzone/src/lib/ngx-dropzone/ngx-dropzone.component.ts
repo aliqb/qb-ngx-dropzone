@@ -9,15 +9,10 @@ import {
   ChangeDetectionStrategy,
   signal,
 } from "@angular/core";
-import { NgxDropzoneService, RejectedFile } from "../ngx-dropzone.service";
+import { NgxDropzoneService } from "../ngx-dropzone.service";
 import { coerceBooleanProperty, coerceNumberProperty } from "../helpers";
 import { NgxDropzonePreviewComponent } from "../ngx-dropzone-preview/ngx-dropzone-preview.component";
-
-export interface NgxDropzoneChangeEvent {
-  source: NgxDropzoneComponent;
-  addedFiles: File[];
-  rejectedFiles: RejectedFile[];
-}
+import { NgxDropzoneChangeEvent } from "../ngx-dropzone.models";
 
 @Component({
   selector: "ngx-dropzone, [ngx-dropzone]",

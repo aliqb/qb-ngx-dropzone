@@ -1,6 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnInit, effect, model } from "@angular/core";
 import { NgxDropzonePreviewComponent } from "../ngx-dropzone-preview.component";
-import { SafeUrl } from "@angular/platform-browser";
 import { NgxDropzoneRemoveBadgeComponent } from "../ngx-dropzone-remove-badge/ngx-dropzone-remove-badge.component";
 
 @Component({
