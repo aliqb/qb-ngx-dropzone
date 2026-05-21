@@ -1,8 +1,16 @@
-import { ChangeDetectionStrategy, Component, OnDestroy, OnInit, computed } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  OnDestroy,
+  OnInit,
+  computed,
+} from "@angular/core";
 import { NgxDropzonePreviewComponent } from "../ngx-dropzone-preview.component";
+import { NgxDropzoneRemoveBadgeComponent } from "../ngx-dropzone-remove-badge/ngx-dropzone-remove-badge.component";
 
 @Component({
   selector: "ngx-dropzone-video-preview",
+  imports: [NgxDropzoneRemoveBadgeComponent],
   template: `
     @if (src()) {
       <video controls (click)="$event.stopPropagation()">
