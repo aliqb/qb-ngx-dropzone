@@ -1,4 +1,3 @@
-import '@angular/common';
 import { enableProdMode, provideZoneChangeDetection } from '@angular/core';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 
